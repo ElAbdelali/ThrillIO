@@ -2,6 +2,8 @@ package com.abdelalieljaouhari.thrillio.entities;
 
 import java.util.Arrays;
 
+import com.abdelalieljaouhari.thrillio.constants.BookGenre;
+
 public class Book extends Bookmark {
 
 	private int publicationYear;
@@ -54,6 +56,14 @@ public class Book extends Bookmark {
 	public String toString() {
 		return "Book [publicationYear=" + publicationYear + ", publisher=" + publisher + ", Author="
 				+ Arrays.toString(Author) + ", genre=" + genre + ", amazonRating=" + amazonRating + "]";
+	}
+
+	@Override
+	public boolean isKidFriendlyEligable() {
+		if(genre.equals(BookGenre.PHILOSOPHY) || (genre.equals(BookGenre.SELF_HELP))){
+			return false;
+		}
+		return true;
 	}
 
 }

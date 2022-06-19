@@ -29,7 +29,7 @@ public class WebLink extends Bookmark {
 	@Override
 	public boolean isKidFriendlyEligable() {
 		if(url.contains("Explicit")|| getTitle().contains("Explicit") || host.contains("Adult")){
-			return false;
+			return true;
 		}
 		return true;
 	}
