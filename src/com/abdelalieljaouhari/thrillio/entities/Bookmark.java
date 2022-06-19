@@ -1,11 +1,13 @@
 package com.abdelalieljaouhari.thrillio.entities;
 
+import com.abdelalieljaouhari.thrillio.constants.KidFriendlyStatus;
+
 public abstract class Bookmark {
 
 	private long id;
 	private String title;
 	private String profileUrl;
-	private String kidFriendlyStatus = "unknown";
+	private String kidFriendlyStatus = KidFriendlyStatus.UNKNOWN;
 
 	public long getId() {
 		return id;
@@ -32,5 +34,13 @@ public abstract class Bookmark {
 	}
 	
 	public abstract boolean isKidFriendlyEligable();
+
+	public String getKidFriendlyStatus() {
+		return kidFriendlyStatus;
+	}
+
+	public void setKidFriendlyStatus(String kidFriendlyStatus) {
+		this.kidFriendlyStatus = kidFriendlyStatus;
+	}
 
 }
