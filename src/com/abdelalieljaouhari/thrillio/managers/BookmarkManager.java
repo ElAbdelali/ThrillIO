@@ -12,7 +12,7 @@ public class BookmarkManager {
 
 	private static BookmarkManager instance = new BookmarkManager();
 	private static BookmarkDao dao = new BookmarkDao();
-	
+
 	private BookmarkManager() {
 	}
 
@@ -23,12 +23,11 @@ public class BookmarkManager {
 	public WebLink createWebLink(long id, String title, String url, String host) {
 
 		WebLink weblink = new WebLink();
-		
+
 		weblink.setId(id);
 		weblink.setTitle(title);
 		weblink.setUrl(url);
 		weblink.setHost(host);
-		
 
 		return weblink;
 	}
@@ -51,7 +50,8 @@ public class BookmarkManager {
 
 	}
 
-	public Book createBook(long id, String title, int publicationYear, String publisher, String[] Author, String genre, double amazonRating) {
+	public Book createBook(long id, String title, int publicationYear, String publisher, String[] Author, String genre,
+			double amazonRating) {
 
 		Book book = new Book();
 
@@ -74,8 +74,27 @@ public class BookmarkManager {
 		UserBookmark userBookmark = new UserBookmark();
 		userBookmark.setUser(user);
 		userBookmark.setBookmark(bookmark);
-		
+
 		dao.saveUserBookmark(userBookmark);
+	}
+
+	public void setKidFriendlyStatus(User user, String kidFriendlyStatus, Bookmark bookmark) {
+		bookmark.setKidFriendlyStatus(kidFriendlyStatus);
+		bookmark.setKidFriendlyMarkedBy(user);
+
+		System.out.println(
+				"Kid-friendly status: " + kidFriendlyStatus + ", Marked by: " + user.getEmail() + ", " + bookmark);
+	}
+
+	public void share(User user, Bookmark bookmark) {
+		bookmark.setSharedBy(user);
+
+		System.out.println("Data to be shared: ");
+		if (bookmark instanceof Book) {
+			System.out.println(((Book) bookmark).getItemData());
+		} else if (bookmark instanceof WebLink) {
+			System.out.println(((WebLink) bookmark).getItemData());
+		}
 	}
 
 }
