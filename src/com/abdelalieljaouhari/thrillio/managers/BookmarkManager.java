@@ -4,6 +4,8 @@ import com.abdelalieljaouhari.thrillio.dao.BookmarkDao;
 import com.abdelalieljaouhari.thrillio.entities.Book;
 import com.abdelalieljaouhari.thrillio.entities.Bookmark;
 import com.abdelalieljaouhari.thrillio.entities.Movie;
+import com.abdelalieljaouhari.thrillio.entities.User;
+import com.abdelalieljaouhari.thrillio.entities.UserBookmark;
 import com.abdelalieljaouhari.thrillio.entities.WebLink;
 
 public class BookmarkManager {
@@ -66,6 +68,14 @@ public class BookmarkManager {
 
 	public Bookmark[][] getBookmarks() {
 		return dao.getBookmarks();
+	}
+
+	public void saveUserBookmark(User user, Bookmark bookmark) {
+		UserBookmark userBookmark = new UserBookmark();
+		userBookmark.setUser(user);
+		userBookmark.setBookmark(bookmark);
+		
+		dao.saveUserBookmark(userBookmark);
 	}
 
 }
