@@ -1,13 +1,16 @@
 package com.abdelalieljaouhari.thrillio.managers;
 
+import com.abdelalieljaouhari.thrillio.dao.BookmarkDao;
 import com.abdelalieljaouhari.thrillio.entities.Book;
+import com.abdelalieljaouhari.thrillio.entities.Bookmark;
 import com.abdelalieljaouhari.thrillio.entities.Movie;
 import com.abdelalieljaouhari.thrillio.entities.WebLink;
 
 public class BookmarkManager {
 
 	private static BookmarkManager instance = new BookmarkManager();
-
+	private static BookmarkDao dao = new BookmarkDao();
+	
 	private BookmarkManager() {
 	}
 
@@ -59,6 +62,10 @@ public class BookmarkManager {
 		book.setAmazonRating(amazonRating);
 
 		return book;
+	}
+
+	public Bookmark[][] getDao() {
+		return dao.getBookmarks();
 	}
 
 }
