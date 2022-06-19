@@ -2,13 +2,16 @@ package com.abdelalieljaouhari.thrillio.entities;
 
 import java.util.Arrays;
 
-import com.abdelalieljaouhari.thrillio.constants.BookGenre;
+import org.apache.commons.lang3.StringUtils;
 
-public class Book extends Bookmark {
+import com.abdelalieljaouhari.thrillio.constants.BookGenre;
+import com.abdelalieljaouhari.thrillio.partner.Shareable;
+
+public class Book extends Bookmark implements Shareable{
 
 	private int publicationYear;
 	private String publisher;
-	private String[] Author;
+	private String[] authors;
 	private String genre;
 	private double amazonRating;
 
@@ -28,12 +31,12 @@ public class Book extends Bookmark {
 		this.publisher = publisher;
 	}
 
-	public String[] getAuthor() {
-		return Author;
+	public String[] getAuthors() {
+		return authors;
 	}
 
-	public void setAuthor(String[] author) {
-		Author = author;
+	public void setAuthors(String[] authors) {
+		this.authors = authors;
 	}
 
 	public String getGenre() {
@@ -55,7 +58,7 @@ public class Book extends Bookmark {
 	@Override
 	public String toString() {
 		return "Book [publicationYear=" + publicationYear + ", publisher=" + publisher + ", Author="
-				+ Arrays.toString(Author) + ", genre=" + genre + ", amazonRating=" + amazonRating + "]";
+				+ Arrays.toString(authors) + ", genre=" + genre + ", amazonRating=" + amazonRating + "]";
 	}
 
 	@Override
@@ -64,6 +67,22 @@ public class Book extends Bookmark {
 			return false;
 		}
 		return true;
+	}
+
+	@Override
+	public String getItemData() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("<item>");
+			builder.append("<type>Book</type>");
+			builder.append("<title>").append(getTitle()).append("</title>");
+			builder.append("<authors>").append(StringUtils.join(authors, ",")).append("</authors>");
+			builder.append("<publisher>").append(publisher).append("</publisher>");
+			builder.append("<publicationYear>").append(publicationYear).append("</publicationYear>");
+			builder.append("<genre>").append(genre).append("</genre>");
+			builder.append("<amazonRating>").append(amazonRating).append("</amazonRating>");
+		builder.append("</item>");
+		
+		return builder.toString();
 	}
 
 }

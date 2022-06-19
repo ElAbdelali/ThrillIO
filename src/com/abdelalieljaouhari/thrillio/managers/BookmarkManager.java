@@ -59,7 +59,7 @@ public class BookmarkManager {
 		book.setTitle(title);
 		book.setPublicationYear(publicationYear);
 		book.setPublisher(publisher);
-		book.setAuthor(Author);
+		book.setAuthors(Author);
 		book.setGenre(genre);
 		book.setAmazonRating(amazonRating);
 
