@@ -5,6 +5,7 @@ public abstract class Bookmark {
 	private long id;
 	private String title;
 	private String profileUrl;
+	private String kidFriendlyStatus = "unknown";
 
 	public long getId() {
 		return id;
