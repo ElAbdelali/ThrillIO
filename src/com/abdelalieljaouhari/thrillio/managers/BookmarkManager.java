@@ -64,7 +64,7 @@ public class BookmarkManager {
 		return book;
 	}
 
-	public Bookmark[][] getDao() {
+	public Bookmark[][] getBookmarks() {
 		return dao.getBookmarks();
 	}
 
